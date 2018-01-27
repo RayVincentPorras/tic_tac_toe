@@ -4,6 +4,7 @@ import random
 
 def display_board(board):
     clear_output()
+    print()
     print('   |   |')
     print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
     print('   |   |')
@@ -15,6 +16,7 @@ def display_board(board):
     print('   |   |')
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
     print('   |   |')
+    print('----------------------')
 
 
 def player_input():
@@ -23,9 +25,9 @@ def player_input():
         marker = input('Do you want to be X or O?').upper()
 
         if marker == 'X':
-            return ('X','O')
+            return ('X', 'O')
         else:
-            return ('O','X')
+            return ('O', 'X')
 
 
 def place_marker(board, marker, position):
@@ -55,7 +57,7 @@ def space_check(board, position):
 
 
 def full_board_check(board):
-    for i in range(1,10):
+    for i in range(1, 10):
         if space_check(board, i):
             return False
     return True
@@ -72,10 +74,19 @@ def player_choice(board):
 def computer_choice(board):
     position = 0
 
-    while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board, position):
+    while position not in [1, 2, 3, 4, 5, 6, 7, 8, 9] or not space_check(board, position):
         position = random.randint(1, 9)
 
     return position
+
+
+def replay():
+    answer = input('Would you like to play Tic Tac Toe again?(Y/N)')
+    if answer.upper() == 'Y':
+        return True
+    else:
+        print('Goodbye!')
+        exit()
 
 
 print('Welcome to Tic Tac Toe!')
@@ -92,6 +103,7 @@ while True:
     while game_on:
         if turn == 'Player':
             # Player1's turn.
+            print('Your turn...')
             display_board(theBoard)
             position = player_choice(theBoard)
             place_marker(theBoard, player_marker, position)
@@ -127,4 +139,4 @@ while True:
                 else:
                     turn = 'Player'
 
-
+    game_on = replay()
