@@ -92,17 +92,18 @@ def replay():
 print('Welcome to Tic Tac Toe!')
 
 while True:
-    # Reset the board
+    # Reset the board on start of game
     theBoard = [' '] * 10
     player_marker = 'X'
     computer_marker = 'O'
+    # Determine who goes first
     turn = choose_first()
     print(turn + ' will go first.')
     game_on = True
 
     while game_on:
         if turn == 'Player':
-            # Player1's turn.
+            # Player's turn
             print('Your turn...')
             display_board(theBoard)
             position = player_choice(theBoard)
@@ -121,7 +122,7 @@ while True:
                     turn = 'Computer'
 
         else:
-            # Computer's turn.
+            # Computer's turn
 
             display_board(theBoard)
             position = computer_choice(theBoard)
